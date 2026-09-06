@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AMERICAN X HISTORY — DESIGN TOKENS
+   Change the accent color, palette, or type scale here — every page and
+   component reads from these tokens, nothing is hard-coded per-page.
+   ========================================================================== */
+
+:root {
+  /* Core palette */
+  --color-ink: #0a0a09; /* primary near-black background */
+  --color-ink-soft: #131211; /* off-black, slightly lifted panels */
+  --color-charcoal: #1d1c1a; /* charcoal surfaces on dark sections */
+  --color-charcoal-line: #322f2b; /* hairline borders on dark sections */
+
+  --color-paper: #f3ede3; /* warm off-white background */
+  --color-paper-dim: #e9e0d0; /* warm white, slightly deeper panels */
+  --color-paper-line: #d8cdb8; /* hairline borders on light sections */
+
+  --color-white: #faf8f4; /* text-on-dark white (warm, not pure #fff) */
+  --color-black: #100f0e; /* text-on-light black (warm, not pure #000) */
+
+  --color-muted: #9a968c; /* mid-gray, on dark */
+  --color-muted-strong: #b6b1a4; /* lighter mid-gray, on dark */
+  --color-muted-on-light: #6b665c; /* mid-gray, on light */
+
+  /* Two shades of the same red, chosen for contrast, not preference:
+     --color-accent is deliberately lighter than a "true" deep red because it
+     doubles as text/border color directly on --color-ink — a true deep red
+     (#a3161f) only hits ~2.5:1 there, failing WCAG AA (4.5:1 for text,
+     3:1 for large text/UI boundaries). This value clears ~4.9:1.
+     --color-accent-fill stays the deep red for solid button/pill
+     backgrounds, where it sits behind WHITE text instead of in front of
+     black — that pairing has plenty of contrast even at the deeper shade. */
+  --color-accent: #dc4b52;
+  --color-accent-bright: #e8636a; /* hover/active state of text-accent */
+  --color-accent-fill: #a3161f; /* solid backgrounds (buttons, active pills) */
+  --color-accent-fill-bright: #c11f28; /* hover/active state of bg-accent-fill */
+  --color-accent-dim: #5c0e14; /* deep red for subtle dark-on-dark marks */
+
+  /* Type */
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+
+  /* Layout */
+  --content-max: 1400px;
+  --prose-max: 68ch;
+  --section-pad-y: clamp(4.5rem, 9vw, 9rem);
+  --edge-pad-x: clamp(1.25rem, 5vw, 4rem);
+
+  /* Motion */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 220ms;
+  --dur-med: 500ms;
+  --dur-slow: 900ms;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-line: var(--color-charcoal-line);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-paper-line: var(--color-paper-line);
+  --color-white: var(--color-white);
+  --color-black: var(--color-black);
+  --color-muted: var(--color-muted);
+  --color-muted-strong: var(--color-muted-strong);
+  --color-muted-on-light: var(--color-muted-on-light);
+  --color-accent: var(--color-accent);
+  --color-accent-bright: var(--color-accent-bright);
+  --color-accent-fill: var(--color-accent-fill);
+  --color-accent-fill-bright: var(--color-accent-fill-bright);
+  --color-accent-dim: var(--color-accent-dim);
+
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+/* Wrapped in @layer base (not left unlayered) so Tailwind's border-color
+   utilities — border-accent, border-ink, etc. — can still override this
+   default. Unlayered CSS always beats layered CSS in the cascade regardless
+   of specificity, so leaving this bare silently overrode every explicit
+   border-color utility on the site with this grey instead. */
+@layer base {
+  * {
+    border-color: var(--color-charcoal-line);
+  }
+}
+
+html {
+  background: var(--color-ink);
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Visible, deliberate focus states everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+a {
+  color: inherit;
+}
+
+/* ==========================================================================
+   TYPE UTILITIES
+   ========================================================================== */
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   GRAIN
+   Barely-perceptible film grain — never distressed/vintage, just a hair of
+   texture so flat black/paper fields don't look like plastic. Applied once,
+   globally, via a fixed full-viewport overlay.
+   ========================================================================== */
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   SPOTLIGHT MOTIF
+   A soft, atmospheric light cone. Reused sparingly: hero, quotes, CTAs.
+   ========================================================================== */
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(250, 248, 244, 0.14) 0%,
+      rgba(250, 248, 244, 0.05) 35%,
+      rgba(10, 10, 9, 0) 70%
+    );
+}
+
+.spotlight-red {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      45% 40% at 50% 0%,
+      rgba(163, 22, 31, 0.18) 0%,
+      rgba(163, 22, 31, 0.04) 45%,
+      rgba(10, 10, 9, 0) 70%
+    );
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility class components reach for directly */
+.container-edit {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--edge-pad-x);
+}
+
+.section-y {
+  padding-block: var(--section-pad-y);
+}
