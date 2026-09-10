@@ -5,8 +5,8 @@ import { cn } from "@/lib/cn";
 
 // Used on /timeline (variant="full", expandable via native <details> for
 // built-in keyboard + screen reader support) and as the homepage teaser
-// (variant="teaser", compact, no expansion). Red dot marks every entry —
-// the one place red repeats down the page, everything else stays grayscale.
+// (variant="teaser", compact, no expansion). Gold dot marks every entry —
+// the one place gold repeats down the page, everything else stays grayscale.
 
 export function TimelineEntry({
   entry,
@@ -37,7 +37,7 @@ export function TimelineEntry({
         className="absolute top-[2.6rem] left-0 h-3 w-3 -translate-y-1/2 rounded-full bg-accent transition-transform group-open:scale-125"
       />
       <summary className="flex cursor-pointer list-none flex-wrap items-baseline gap-x-4 gap-y-1 [&::-webkit-details-marker]:hidden">
-        <span className="font-display text-lg text-accent sm:text-xl">{entry.date}</span>
+        <span className="font-display text-metallic-gold text-lg sm:text-xl">{entry.date}</span>
         <span className="font-serif text-xl text-white sm:text-2xl">{entry.title}</span>
         {entry.location && (
           <span className="font-sans text-xs uppercase tracking-[0.12em] text-muted">

@@ -22,7 +22,7 @@ export function RouteStop({ stop, isLast }: { stop: RouteStopData; isLast?: bool
     <article id={stop.id} className="scroll-mt-28 border-t border-charcoal-line py-14 sm:py-16">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[120px_1fr]">
         <div>
-          <span className="font-display text-6xl leading-none text-accent sm:text-7xl">
+          <span className="font-display text-metallic-gold text-6xl leading-none sm:text-7xl">
             {stop.number}
           </span>
         </div>

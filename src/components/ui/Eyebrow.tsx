@@ -1,9 +1,9 @@
 import { cn } from "@/lib/cn";
 
-// Small red kicker label used above headlines: dates, stop numbers, section
-// numbers. This is one of the few places red appears — keep it that way.
+// Small gold kicker label used above headlines: dates, stop numbers, section
+// numbers. This is one of the few places gold appears — keep it that way.
 //
-// `tone` picks which shade of red stays readable at this small size: the
+// `tone` picks which shade of gold stays readable at this small size: the
 // vivid --color-accent clears 4.5:1 on dark backgrounds but not on paper,
 // while the deep --color-accent-fill is the reverse — safe on paper, too
 // dim on ink. Match `tone` to the section's background, not the text color.

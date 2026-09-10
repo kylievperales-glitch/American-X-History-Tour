@@ -33,7 +33,7 @@ export default function HomePage() {
               <br />
               History
             </h1>
-            <p className="font-display mt-1 text-2xl tracking-[0.2em] text-accent sm:text-3xl">
+            <p className="font-display text-metallic-gold mt-1 text-2xl tracking-[0.2em] sm:text-3xl">
               Tour of Miami
             </p>
             <p className="font-serif mt-7 max-w-md text-lg leading-relaxed text-muted-strong sm:text-xl">
@@ -84,7 +84,7 @@ export default function HomePage() {
             <p className="font-display text-[9rem] leading-[0.8] text-black sm:text-[11rem]">
               1964
             </p>
-            <p className="font-display text-2xl tracking-[0.14em] text-accent sm:text-3xl">
+            <p className="font-display text-metallic-gold-on-light text-2xl tracking-[0.14em] sm:text-3xl">
               Miami Beach
             </p>
           </Reveal>
@@ -296,7 +296,7 @@ export default function HomePage() {
             <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden border border-paper-line bg-paper-line sm:grid-cols-3 lg:grid-cols-6">
               {PARTICIPATION_WAYS.map((way) => (
                 <div key={way.id} className="flex flex-col gap-2 bg-paper p-6">
-                  <span className="font-display text-2xl text-accent">{way.label}</span>
+                  <span className="font-display text-metallic-gold-on-light text-2xl">{way.label}</span>
                   <span className="font-sans text-xs leading-snug text-muted-on-light">
                     {way.description}
                   </span>

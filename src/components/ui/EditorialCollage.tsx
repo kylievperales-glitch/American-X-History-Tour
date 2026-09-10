@@ -87,7 +87,7 @@ export function CollageVerticalWithMark({
       )}
     >
       <PhotoPlaceholder photo={vertical} className="w-full" rotate={-1.5} />
-      <div className="font-display text-center text-6xl leading-none text-accent sm:text-7xl md:text-8xl">
+      <div className="font-display text-metallic-gold text-center text-6xl leading-none sm:text-7xl md:text-8xl">
         {mark}
       </div>
       <PhotoPlaceholder photo={landscape} className="w-full self-end" rotate={1.5} />
@@ -135,7 +135,7 @@ export function CollageOverlapDate({
         <div className="absolute -left-6 bottom-0 w-2/3 sm:-left-10">
           <PhotoPlaceholder photo={front} className="w-full" rotate={-3} />
         </div>
-        <div className="font-display absolute -top-5 -right-2 text-2xl text-accent sm:-right-6 sm:text-3xl">
+        <div className="font-display text-metallic-gold absolute -top-5 -right-2 text-2xl sm:-right-6 sm:text-3xl">
           {date}
         </div>
       </div>

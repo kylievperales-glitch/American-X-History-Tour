@@ -59,7 +59,7 @@ export function Header() {
           })}
           <Link
             href={NAV_CTA.href}
-            className="border border-accent-fill bg-accent-fill px-5 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-accent-fill-bright"
+            className="border border-transparent bg-accent-fill text-shadow-gold-button shine-gold-button px-5 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors duration-200 hover:bg-accent-fill-bright"
           >
             {NAV_CTA.label}
           </Link>
@@ -126,7 +126,7 @@ export function Header() {
             </nav>
             <Link
               href={NAV_CTA.href}
-              className="mt-8 block border border-accent-fill bg-accent-fill px-6 py-4 text-center font-sans text-sm font-medium uppercase tracking-[0.14em] text-white"
+              className="mt-8 block border border-transparent bg-accent-fill text-shadow-gold-button shine-gold-button px-6 py-4 text-center font-sans text-sm font-medium uppercase tracking-[0.14em] text-black"
             >
               {NAV_CTA.label}
             </Link>

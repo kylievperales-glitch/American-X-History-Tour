@@ -24,19 +24,47 @@
   --color-muted-strong: #b6b1a4; /* lighter mid-gray, on dark */
   --color-muted-on-light: #6b665c; /* mid-gray, on light */
 
-  /* Two shades of the same red, chosen for contrast, not preference:
-     --color-accent is deliberately lighter than a "true" deep red because it
-     doubles as text/border color directly on --color-ink — a true deep red
-     (#a3161f) only hits ~2.5:1 there, failing WCAG AA (4.5:1 for text,
-     3:1 for large text/UI boundaries). This value clears ~4.9:1.
-     --color-accent-fill stays the deep red for solid button/pill
+  /* Two shades of the same gold, chosen for contrast, not preference. True
+     warm gold — not orange (too much red), not "goldenrod" (too much
+     green, reads dull/olive), and not so bright it reads as flat yellow
+     at small sizes. Hue sits around 44-46°, matching the tour's own logo.
+     --color-accent is a saturated gold used as text/border color directly
+     on --color-ink — it clears WCAG AA (4.5:1 for text, 3:1 for large
+     text/UI boundaries) with plenty of headroom (~10.3:1).
+     --color-accent-fill is a rich gold-bronze for solid button/pill
      backgrounds, where it sits behind WHITE text instead of in front of
-     black — that pairing has plenty of contrast even at the deeper shade. */
-  --color-accent: #dc4b52;
-  --color-accent-bright: #e8636a; /* hover/active state of text-accent */
-  --color-accent-fill: #a3161f; /* solid backgrounds (buttons, active pills) */
-  --color-accent-fill-bright: #c11f28; /* hover/active state of bg-accent-fill */
-  --color-accent-dim: #5c0e14; /* deep red for subtle dark-on-dark marks */
+     black — dark enough to keep that pairing at 4.5:1+ (~4.8:1), but
+     warmer/richer than a plain dark brown. */
+  --color-accent: #eab308;
+  --color-accent-bright: #f2c40f; /* hover/active state of text-accent */
+  --color-accent-fill: #99620f; /* solid backgrounds (buttons, active pills) */
+  --color-accent-fill-bright: #9c650f; /* hover/active state of bg-accent-fill */
+  --color-accent-dim: #5c3d0a; /* deep gold-bronze for subtle dark-on-dark marks */
+
+  /* Metallic gold sheen for large display text (numerals, marks) — a
+     brushed-foil gradient rather than a flat fill, echoing the tour's
+     logo. Reserved for big font-display text (text-xl and up); at small
+     sizes a gradient just reads as banding, so labels/borders/hovers stay
+     the flat --color-accent above. */
+  --gradient-gold-metallic: linear-gradient(
+    135deg,
+    #854d0e 0%,
+    #eab308 22%,
+    #fef3c7 50%,
+    #eab308 78%,
+    #854d0e 100%
+  );
+  /* Same idea, minus the near-white highlight stop — that stop nearly
+     disappears against --color-paper, so on light sections the gradient
+     stays within the darker gold/bronze range for legibility. */
+  --gradient-gold-metallic-on-light: linear-gradient(
+    135deg,
+    #854d0e 0%,
+    #eab308 30%,
+    #a16207 50%,
+    #eab308 70%,
+    #854d0e 100%
+  );
 
   /* Type */
   --font-display: var(--font-anton), "Arial Narrow", sans-serif;
@@ -120,8 +148,18 @@ body {
   border-radius: 1px;
 }
 
-a {
-  color: inherit;
+/* Wrapped in @layer base (not left unlayered) for the same reason as the
+   border-color reset above: unlayered CSS beats every Tailwind utility
+   regardless of specificity, so a bare `a { color: inherit }` here would
+   silently defeat text-black/text-white/text-accent/etc. on every <a> and
+   next/link <Link> on the site — it happened to look right almost
+   everywhere by coincidence (ambient color already matched the intended
+   one), which is exactly what made this invisible until a link needed a
+   color that *didn't* match its ambient context. */
+@layer base {
+  a {
+    color: inherit;
+  }
 }
 
 /* ==========================================================================
@@ -136,6 +174,44 @@ a {
 
 .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Metallic gold sheen for large accent display text — see
+   --gradient-gold-metallic above for why this is reserved for big type. */
+.text-metallic-gold {
+  background: var(--gradient-gold-metallic);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Use on light/paper sections instead — see the gradient's own comment. */
+.text-metallic-gold-on-light {
+  background: var(--gradient-gold-metallic-on-light);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Same brushed-foil gradient as .text-metallic-gold, used as the actual
+   button fill instead of a subtle overlay. The bright center stop dips
+   below 4.5:1 for the white label, so .text-shadow-gold-button's stronger
+   shadow is doing real legibility work here, not just polish. */
+.shine-gold-button {
+  background-image: var(--gradient-gold-metallic);
+}
+
+/* Black label reads far better than white across most of the metallic
+   gradient (black hits ~10-17:1 against the mid/bright stops vs. white's
+   ~1-2:1 there) — it only weakens right at the gradient's dark corner
+   stops, where a soft light glow (not a dark drop-shadow, which would do
+   nothing for dark text) keeps the letterforms defined. */
+.text-shadow-gold-button {
+  text-shadow:
+    0 0 2px rgba(250, 248, 244, 0.6),
+    0 0 6px rgba(250, 248, 244, 0.35);
 }
 
 .text-balance {
@@ -177,15 +253,15 @@ a {
     );
 }
 
-.spotlight-red {
+.spotlight-gold {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
     radial-gradient(
       45% 40% at 50% 0%,
-      rgba(163, 22, 31, 0.18) 0%,
-      rgba(163, 22, 31, 0.04) 45%,
+      rgba(234, 179, 8, 0.18) 0%,
+      rgba(234, 179, 8, 0.04) 45%,
       rgba(10, 10, 9, 0) 70%
     );
 }

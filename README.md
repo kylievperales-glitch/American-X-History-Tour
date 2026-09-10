@@ -132,17 +132,24 @@ page groups and renders by tier automatically.
 ## Changing the accent color
 
 All color tokens live in `src/app/globals.css`, in the `:root` block at the
-top of the file. The red accent is deliberately split into **two shades** —
-this isn't arbitrary, it's what keeps small red text/labels readable against
+top of the file. The gold accent is deliberately split into **two shades** —
+this isn't arbitrary, it's what keeps small gold text/labels readable against
 both the dark and light sections:
 
 - `--color-accent` — the everyday accent (text, borders, dots, underlines).
-  It's lighter than a "true" deep red on purpose: at that size and against
-  `--color-ink`, a true deep red only reaches ~2.5:1 contrast, which fails
-  WCAG AA. This value clears ~4.9:1.
-- `--color-accent-fill` — the deep red used for solid button/pill
-  backgrounds (white text sits on top of this one, so it can afford to be
-  darker).
+  It's a bright, saturated gold that clears ~9:1 contrast against
+  `--color-ink`, well past WCAG AA.
+- `--color-accent-fill` — the deep antique-gold/bronze used for solid
+  button/pill backgrounds (white text sits on top of this one, so it can
+  afford to be darker).
+
+Large accent display text (numerals, marks — text-xl and up) uses the
+`.text-metallic-gold` / `.text-metallic-gold-on-light` utility classes
+instead of a flat `text-accent` color, for the brushed-foil sheen. Both are
+defined next to the color tokens in `globals.css`, driven by the
+`--gradient-gold-metallic*` custom properties — change the gradient stops
+there to adjust the sheen. Small text stays a flat color on purpose; a
+gradient just reads as banding at that size.
 
 If you change either, re-check contrast against both `--color-ink` (dark
 sections) and `--color-paper` (light sections) before shipping — a contrast

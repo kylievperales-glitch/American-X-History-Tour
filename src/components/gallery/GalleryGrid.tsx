@@ -66,7 +66,7 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
             className={cn(
               "border px-4 py-2 font-sans text-xs uppercase tracking-[0.12em] transition-colors",
               activeCategory === cat
-                ? "border-accent-fill bg-accent-fill text-white"
+                ? "border-transparent bg-accent-fill text-black text-shadow-gold-button shine-gold-button"
                 : "border-charcoal-line text-muted-strong hover:border-accent hover:text-accent",
             )}
           >

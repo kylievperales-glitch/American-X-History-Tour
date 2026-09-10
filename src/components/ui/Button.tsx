@@ -12,7 +12,7 @@ type Props = {
 
 const VARIANT_CLASS: Record<Variant, string> = {
   primary:
-    "bg-accent-fill text-white hover:bg-accent-fill-bright border border-accent-fill",
+    "bg-accent-fill text-black text-shadow-gold-button shine-gold-button hover:bg-accent-fill-bright border border-transparent",
   secondary:
     "bg-transparent text-current border border-current/40 hover:border-current",
   ghost:

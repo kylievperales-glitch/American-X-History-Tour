@@ -51,7 +51,7 @@ export default function EventPage() {
           <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden border border-paper-line bg-paper-line sm:grid-cols-3 lg:grid-cols-6">
             {PARTICIPATION_WAYS.map((way) => (
               <div key={way.id} className="flex flex-col gap-2 bg-paper p-6">
-                <span className="font-display text-2xl text-accent">{way.label}</span>
+                <span className="font-display text-metallic-gold-on-light text-2xl">{way.label}</span>
                 <span className="font-sans text-xs leading-snug text-muted-on-light">
                   {way.description}
                 </span>

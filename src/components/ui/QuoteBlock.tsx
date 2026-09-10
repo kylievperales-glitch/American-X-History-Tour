@@ -19,7 +19,10 @@ export function QuoteBlock({
     <Reveal className={cn("relative max-w-3xl", className)}>
       <span
         aria-hidden
-        className="font-display block text-7xl leading-none text-accent sm:text-8xl"
+        className={cn(
+          "font-display block text-7xl leading-none sm:text-8xl",
+          tone === "dark" ? "text-metallic-gold" : "text-metallic-gold-on-light",
+        )}
       >
         &ldquo;
       </span>
