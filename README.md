@@ -27,14 +27,19 @@ Requires Node 20.9+ (this project was built on Next.js 16 with Turbopack).
 | `/`          | Home — trailer for the whole site        |
 | `/story`     | The Story — 7-chapter narrative          |
 | `/timeline`  | Interactive timeline                     |
-| `/route`     | The Route — stop-by-stop guide           |
-| `/event`     | The Experience — participation & logistics |
+| `/route`     | The Route — 2027 route + program, then Past Xperiences stop-by-stop |
+| `/event`     | 2027 Xperience — current event, planned program, RunAdic registration |
 | `/gallery`   | Gallery — filterable photo grid + lightbox |
 | `/partners`  | Partners / sponsorship tiers             |
 | `/about`     | About American X History & the Miami Athletic Association |
 
 Each is a real file under `src/app/<route>/page.tsx` — actual Next.js App
 Router pages, not scroll-anchors on one long homepage.
+
+## Brand rule
+
+Event/brand uses of "experience" are always spelled **Xperience** /
+**Xperiences** (e.g. "Join the Xperience", "Past Xperiences").
 
 ## Where content lives
 
@@ -47,8 +52,8 @@ component code to update text, dates, or add a stop/photo/partner.
 | `src/data/site.ts` | Site name, tagline, nav items, CTA button labels |
 | `src/data/story.ts` | The Story page's 7 chapters |
 | `src/data/timeline.ts` | Every timeline entry (`/timeline` and the homepage teaser pull from the same list — see `HOME_TIMELINE_IDS`) |
-| `src/data/route.ts` | Route stops, in order, plus the 4-mile/9-mile distance labels |
-| `src/data/event.ts` | Ways to participate + the editable event logistics block (date, start/finish, registration URL, cost) |
+| `src/data/route.ts` | `ROUTE_2027_ANCHORS` (2027 route anchor points — no street path until finalized) and `ROUTE_STOPS` (past-edition route stops, in order) |
+| `src/data/event.ts` | `EVENT_2027` (date, location, RunAdic registration URL), `PROGRAM_2027` (planned program — tentative slots carry a `status` so they render with a Planned/Possible tag), ways to participate |
 | `src/data/gallery.ts` | Every gallery image — subject, category, year, location |
 | `src/data/partners.ts` | Partner tiers and entries, sponsorship contact info |
 | `src/data/quotes.ts` | Pull quotes — every entry stays a visible `[QUOTE PLACEHOLDER]` until you add a real, sourced quotation |

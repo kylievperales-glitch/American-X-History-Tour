@@ -22,7 +22,7 @@ export default function AboutPage() {
           <Reveal>
             <Eyebrow>About</Eyebrow>
             <h1 className="font-display mt-5 max-w-3xl text-balance text-5xl leading-[0.92] text-white sm:text-7xl">
-              Why This Experience Exists
+              Why This Xperience Exists
             </h1>
           </Reveal>
         </div>
@@ -33,11 +33,10 @@ export default function AboutPage() {
         <div className="container-edit max-w-3xl">
           <SectionIntro eyebrow="The Mission" title="History You Can Walk Through" className="max-w-none" />
           <p className="font-serif mt-6 text-lg leading-relaxed text-muted-strong">
-            American X History exists to connect people to Miami&rsquo;s past by
-            letting them move through it. The story of Cassius Clay&rsquo;s Miami
-            years — his training, the city&rsquo;s segregation-era history, and the
-            1964 championship — is told through the neighborhoods and
-            landmarks where it happened.
+            American X History connects people to Miami&rsquo;s past through
+            movement, place, and community. Each Xperience draws from Muhammad
+            Ali&rsquo;s Miami story while creating a new way to engage with that
+            history today.
           </p>
         </div>
       </section>
@@ -51,11 +50,12 @@ export default function AboutPage() {
             title="Miami Athletic Association"
             className="max-w-none"
           />
+          {/* [CONTENT TO VERIFY] — confirm this description with MAA. */}
           <p className="font-serif mt-6 text-lg leading-relaxed text-muted-on-light">
             The Miami Athletic Association is a membership-driven
             organization connecting marketing executives from sports and
             hospitality to produce and promote South Florida&rsquo;s year-round
-            tourism. [CONTENT TO VERIFY]
+            tourism.
           </p>
         </div>
       </section>
@@ -74,11 +74,15 @@ export default function AboutPage() {
                 alt: "Portrait of Kevin Krueger, founder of the Miami Athletic Association.",
               }}
             />
-            <p className="font-serif max-w-[60ch] text-lg leading-relaxed text-muted-strong">
-              [FOUNDER BIO TO BE PROVIDED] — a short biography for Kevin
-              Krueger, founder of the Miami Athletic Association and the
-              American X History Tour, will be added here.
-            </p>
+            {/* Founder bio not yet provided — showing name/title only. Add the
+                bio as a font-serif paragraph below the title line when ready. */}
+            <div>
+              <p className="font-sans text-xs uppercase leading-relaxed tracking-[0.14em] text-muted">
+                Founder, Miami Athletic Association
+                <br />
+                American X History Tour
+              </p>
+            </div>
           </div>
         </div>
       </section>

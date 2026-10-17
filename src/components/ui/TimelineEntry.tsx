@@ -24,7 +24,7 @@ export function TimelineEntry({
           aria-hidden
           className="absolute top-1.5 left-0 h-2.5 w-2.5 rounded-full bg-accent"
         />
-        <p className="font-display text-sm text-muted-strong">{entry.date}</p>
+        {entry.date && <p className="font-display text-sm text-muted-strong">{entry.date}</p>}
         <p className="font-serif mt-1 text-lg text-white">{entry.title}</p>
       </div>
     );
@@ -37,7 +37,9 @@ export function TimelineEntry({
         className="absolute top-[2.6rem] left-0 h-3 w-3 -translate-y-1/2 rounded-full bg-accent transition-transform group-open:scale-125"
       />
       <summary className="flex cursor-pointer list-none flex-wrap items-baseline gap-x-4 gap-y-1 [&::-webkit-details-marker]:hidden">
-        <span className="font-display text-metallic-gold text-lg sm:text-xl">{entry.date}</span>
+        {entry.date && (
+          <span className="font-display text-metallic-gold text-lg sm:text-xl">{entry.date}</span>
+        )}
         <span className="font-serif text-xl text-white sm:text-2xl">{entry.title}</span>
         {entry.location && (
           <span className="font-sans text-xs uppercase tracking-[0.12em] text-muted">

@@ -130,8 +130,9 @@ export const STORY_CHAPTERS: StoryChapter[] = [
     title: "The Story Continues",
     dateOrLocation: "Today — Miami, Florida",
     paragraphs: [
-      "The American X History Tour lets people physically move through the places where this history happened — from the Hampton House to Miami Beach.",
-      "The route connects places that shaped the story.",
+      "The American X History Tour brings this history into the present through movement, community, and places connected to Ali's Miami story.",
+      "Each year's Xperience builds on that history in a different way.",
+      "Past Xperiences have connected sites across Brownsville, mainland Miami, and Miami Beach, while the 2027 program returns the focus to Miami Beach and Muhammad Ali Way.",
     ],
     image: {
       src: "/images/event/past-event-2022-a.jpg",

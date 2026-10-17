@@ -6,14 +6,14 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { EventCTA } from "@/components/ui/EventCTA";
-import { ORGANIZER, PARTNERS, SPONSORSHIP_CONTACT } from "@/data/partners";
+import { ORGANIZER, PARTNERS, SPONSORSHIP_CONTACT, type Partner } from "@/data/partners";
 import { CTA } from "@/data/site";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
   title: "Partners",
   description:
-    "The American X History Tour of Miami is produced by the Miami Athletic Association, in partnership with RunAdic and The Historic Hampton House.",
+    "American X History is produced by the Miami Athletic Association with support from partners across Miami — including RunAdic for the 2027 Xperience and The Historic Hampton House in past Xperiences.",
 };
 
 // Logos are brand marks, not archival photography — real color, no
@@ -64,6 +64,37 @@ function LogoBox({
   );
 }
 
+const currentPartners = PARTNERS.filter((p) => p.group === "current");
+const pastPartners = PARTNERS.filter((p) => p.group === "past");
+
+function PartnerCard({ partner }: { partner: Partner }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <LogoBox
+        name={partner.name}
+        logoSrc={partner.logoSrc}
+        logoAspect={partner.logoAspect}
+        className={partner.logoMaxWidth ?? "max-w-[280px]"}
+      />
+      <div>
+        <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-accent">{partner.label}</p>
+        <p className="font-display mt-2 text-xl text-white">{partner.name}</p>
+        <p className="font-serif mt-2 max-w-[45ch] text-base leading-relaxed text-muted-strong">
+          {partner.role}
+        </p>
+        {partner.href && partner.linkLabel && (
+          <Link
+            href={partner.href}
+            className="mt-3 inline-block font-sans text-xs uppercase tracking-[0.14em] text-accent underline decoration-1 underline-offset-4 hover:text-accent-bright"
+          >
+            {partner.linkLabel} →
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function PartnersPage() {
   return (
     <>
@@ -76,26 +107,38 @@ export default function PartnersPage() {
               Produced In Partnership
             </h1>
             <p className="font-serif mt-6 max-w-2xl text-lg leading-relaxed text-muted-strong sm:text-xl">
-              The American X History Tour is produced by the Miami Athletic
-              Association, in partnership with RunAdic and The Historic
-              Hampton House.
+              American X History is produced by the Miami Athletic
+              Association with support from partners across Miami.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Produced by */}
+      {/* Produced by (left) + current 2027 partners (right). Headers share
+          the first grid row on md+ so both logos start at the same height;
+          `order` keeps each header above its own card when stacked on mobile. */}
       <section className="border-t border-charcoal-line bg-ink py-16 sm:py-20">
-        <div className="container-edit">
-          <SectionIntro eyebrow="Produced By" title={ORGANIZER.name} className="max-w-none" />
-          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <div className="container-edit grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
+          <SectionIntro
+            eyebrow="Produced By"
+            title={ORGANIZER.name}
+            className="order-1 max-w-none md:order-none md:self-end"
+          />
+          {currentPartners.length > 0 && (
+            <SectionIntro
+              eyebrow="2027 Xperience"
+              title="2027 Partner"
+              className="order-3 mt-6 max-w-none md:order-none md:mt-0 md:self-end"
+            />
+          )}
+          <div className="order-2 flex flex-col gap-5 md:order-none">
             <LogoBox
               name={ORGANIZER.name}
               logoSrc={ORGANIZER.logoSrc}
               logoAspect={ORGANIZER.logoAspect}
-              className="max-w-[220px]"
+              className="max-w-[280px]"
             />
-            <p className="font-serif max-w-[50ch] text-base leading-relaxed text-muted-strong">
+            <p className="font-serif max-w-[45ch] text-base leading-relaxed text-muted-strong">
               {ORGANIZER.role}{" "}
               <Link
                 href="/about"
@@ -105,41 +148,30 @@ export default function PartnersPage() {
               </Link>
             </p>
           </div>
+          {currentPartners.length > 0 && (
+            <div className="order-4 flex flex-col gap-10 md:order-none">
+              {currentPartners.map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Partners */}
-      <section className="border-t border-charcoal-line bg-ink py-16 sm:py-20">
-        <div className="container-edit">
-          <SectionIntro eyebrow="In Partnership With" title="Partners" className="max-w-none" />
-          <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
-            {PARTNERS.map((partner) => (
-              <div key={partner.id} className="flex flex-col gap-5">
-                <LogoBox
-                  name={partner.name}
-                  logoSrc={partner.logoSrc}
-                  logoAspect={partner.logoAspect}
-                  className={partner.logoMaxWidth ?? "max-w-[280px]"}
-                />
-                <div>
-                  <p className="font-display text-xl text-white">{partner.name}</p>
-                  <p className="font-serif mt-2 max-w-[45ch] text-base leading-relaxed text-muted-strong">
-                    {partner.role}
-                  </p>
-                  {partner.href && partner.linkLabel && (
-                    <Link
-                      href={partner.href}
-                      className="mt-3 inline-block font-sans text-xs uppercase tracking-[0.14em] text-accent underline decoration-1 underline-offset-4 hover:text-accent-bright"
-                    >
-                      {partner.linkLabel} →
-                    </Link>
-                  )}
-                </div>
-              </div>
-            ))}
+      {/* Past partners — kept separate so past involvement never reads as
+          confirmed for the current year */}
+      {pastPartners.length > 0 && (
+        <section className="border-t border-charcoal-line bg-ink py-16 sm:py-20">
+          <div className="container-edit">
+            <SectionIntro eyebrow="Past Xperiences" title="Past & Historical Partners" className="max-w-none" />
+            <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
+              {pastPartners.map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Become a partner */}
       <section className="border-t border-charcoal-line bg-paper py-20 text-black sm:py-28">
@@ -148,7 +180,7 @@ export default function PartnersPage() {
             tone="light"
             eyebrow="Grow With Us"
             title="Interested in Partnering?"
-            lede="The American X History Tour is a growing community experience. If your organization wants to be part of connecting Miami's history to the neighborhoods it happened in, reach out below."
+            lede="The American X History Tour is a growing community Xperience. If your organization wants to be part of connecting Miami's history to the neighborhoods it happened in, reach out below."
           />
           <div className="mt-8 flex flex-wrap gap-x-10 gap-y-2 font-sans text-sm text-muted-on-light">
             <p>Contact: {SPONSORSHIP_CONTACT.email}</p>

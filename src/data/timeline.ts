@@ -150,7 +150,9 @@ export const TIMELINE: TimelineEntry[] = [
   },
   {
     id: "american-x-history-launch",
-    date: "[DATE TO VERIFY]",
+    // Launch year not yet confirmed — leave empty (the date is hidden when
+    // blank) rather than showing a placeholder publicly.
+    date: "",
     title: "The American X History Tour Begins",
     era: "Today",
     location: "Miami, Florida",
@@ -168,7 +170,7 @@ export const TIMELINE: TimelineEntry[] = [
   {
     id: "today",
     date: "Today",
-    title: "Experience the Journey",
+    title: "Xperience the Journey",
     era: "Today",
     location: "Miami, Florida",
     summary:
@@ -182,6 +184,16 @@ export const TIMELINE: TimelineEntry[] = [
     },
     status: "placeholder-copy",
   },
+  {
+    id: "2027-xperience",
+    date: "2027",
+    title: "American X History Returns",
+    era: "Today",
+    location: "Miami Beach, Florida",
+    summary:
+      "The next American X History Xperience is planned for February 28, 2027 in Miami Beach, with a shorter community jog/walk, a Muhammad Ali Way finish, boxing, and Coffee & Conversation. Programming is still being finalized.",
+    status: "content-review",
+  },
 ];
 
 // Curated subset for the homepage mini-timeline (brief section 12).
@@ -191,4 +203,5 @@ export const HOME_TIMELINE_IDS = [
   "1964-fight",
   "name-change",
   "today",
+  "2027-xperience",
 ];

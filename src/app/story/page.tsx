@@ -89,8 +89,8 @@ export default function StoryPage() {
       })}
 
       <EventCTA
-        title="Walk Through This History."
-        lede="Most of the chapters above are still places you can stand in today."
+        title="Xperience This History."
+        lede="Many of the places in this story — and the sites where others once stood — can still be explored in Miami today."
         primaryHref="/route"
         primaryLabel={CTA.route}
         secondaryHref="/timeline"

@@ -26,8 +26,8 @@ export default function TimelinePage() {
             </h1>
             <p className="font-serif mt-6 max-w-xl text-lg leading-relaxed text-muted-strong sm:text-xl">
               Not a full biography — the moments that connect Clay, Miami,
-              and the route you can walk today. Select any entry to read
-              more.
+              and the places you can still explore today. Select any entry
+              to read more.
             </p>
           </Reveal>
         </div>

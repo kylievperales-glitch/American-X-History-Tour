@@ -6,6 +6,9 @@ export type ParticipationWay = {
 
 // Per brief section 15 & 22 — accessible to far more than competitive
 // runners. Keep this list; do not imply competition in copy elsewhere.
+// These are general American X History ways to take part across past and
+// current Xperiences — not every mode (e.g. Ride) is part of every year's
+// program, so always present this list with that framing.
 export const PARTICIPATION_WAYS: ParticipationWay[] = [
   { id: "walk", label: "Walk", description: "Move through the route at your own pace." },
   { id: "run", label: "Run", description: "Cover the route as a run." },
@@ -15,21 +18,68 @@ export const PARTICIPATION_WAYS: ParticipationWay[] = [
   { id: "cheer", label: "Cheer", description: "Show up for the community without covering the route." },
 ];
 
-// Editable event logistics. Do not invent current-year details — every
-// field below should be filled in or confirmed before publishing.
-export const EVENT_DETAILS = {
-  date: "[EVENT DATE]",
-  startTime: "[START TIME]",
-  startLocation: "[START LOCATION]",
-  finishLocation: "[FINISH LOCATION]",
-  shortOption: "[4-MILE OPTION DETAILS]",
-  longOption: "[9-MILE OPTION DETAILS]",
-  registrationUrl: "[REGISTRATION URL]",
-  cost: "[COST / FREE / TBD]",
+// The current (2027) Xperience. Update this block each year — every page
+// that mentions the date, location, or registration link reads from here.
+export const EVENT_2027 = {
+  year: "2027",
+  weekday: "Sunday",
+  dateLong: "Sunday, February 28, 2027",
+  dateShort: "February 28, 2027",
+  location: "Miami Beach, Florida",
+  registrationUrl: "https://app.runadic.com/speedy-laps/event/365",
+  programNote: "Programming is still being finalized and may change before February 28.",
 };
 
 export const EVENT_INTRO =
-  "The American X History Tour is a community walk, run, and bike experience connecting Muhammad Ali's Miami story with the city around him. The tour links the Historic Hampton House and Brownsville with sections of mainland Miami and Miami Beach, culminating near the site where Cassius Clay became heavyweight champion in 1964.";
+  "American X History returns to Miami Beach in 2027 for a morning honoring Muhammad Ali through movement, boxing, conversation, and community.";
+
+// Program status labels. Only confirmed items may omit `status` — anything
+// tentative MUST carry one so it renders with a visible "Planned" or
+// "Possible" tag and is never mistaken for a confirmed part of the day.
+export type ProgramStatus = "planned" | "possible";
+
+export type ProgramSlot = {
+  time: string;
+  items: { title: string; detail?: string }[];
+  status?: ProgramStatus;
+};
+
+export const PROGRAM_STATUS_LABEL: Record<ProgramStatus, string> = {
+  planned: "Planned · Subject to confirmation",
+  possible: "Possible · Not yet confirmed",
+};
+
+// The planned 2027 program. The whole schedule is presented under a
+// "Planned Program" heading with EVENT_2027.programNote beneath it.
+export const PROGRAM_2027: ProgramSlot[] = [
+  { time: "7:00 AM", items: [{ title: "Gather" }] },
+  {
+    time: "7:00–8:00 AM",
+    items: [
+      {
+        title: "Approximately one-mile jog / walk",
+        detail: "A Miami Beach route — exact path to be finalized.",
+      },
+    ],
+  },
+  {
+    time: "After the route",
+    items: [
+      { title: "Group photo at Muhammad Ali Way" },
+      { title: "Approximately 30-minute light boxing lesson", detail: "At or near the Rum Room." },
+    ],
+  },
+  { time: "8:00 AM", items: [{ title: "Coffee & Conversation at Rum Room" }] },
+  { time: "9:00 AM", status: "planned", items: [{ title: "Mayoral proclamation" }] },
+  {
+    time: "Possible additions",
+    status: "possible",
+    items: [
+      { title: "Miami Beach Convention Center Hall of Fame Tour" },
+      { title: "Surfcomber Hotel pool gathering", detail: "Around 10:00 AM." },
+    ],
+  },
+];
 
 import type { PhotoRef } from "./types";
 

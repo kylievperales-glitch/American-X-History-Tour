@@ -1,9 +1,8 @@
-// The tour is produced by the Miami Athletic Association, with two
-// confirmed partners: RunAdic and The Historic Hampton House. Keep this
+// The tour is produced by the Miami Athletic Association. Partners are split
+// into `current` (involved in the 2027 Xperience) and `past` (involved in
+// previous Xperiences — do not imply they're confirmed for 2027). Keep this
 // list to real, confirmed organizations only — do not add placeholder
-// tiers/entries speculatively. When a new partner is confirmed, add an
-// entry to PARTNERS below; there's no need for a tier system until the
-// roster is large enough to warrant grouping.
+// entries or sponsorship levels speculatively.
 
 export const ORGANIZER = {
   name: "Miami Athletic Association",
@@ -13,9 +12,13 @@ export const ORGANIZER = {
   logoAspect: "1000 / 1002", // matches the source file's actual pixel dimensions
 };
 
+export type PartnerGroup = "current" | "past";
+
 export type Partner = {
   id: string;
   name: string;
+  group: PartnerGroup;
+  label: string; // small kicker shown above the name, e.g. "2027 Partner"
   role: string;
   logoLabel: string;
   logoSrc?: string | null; // real logo image once supplied; renders the placeholder box when null/absent
@@ -29,7 +32,10 @@ export const PARTNERS: Partner[] = [
   {
     id: "runadic",
     name: "RunAdic",
-    role: "Event partner. [ROLE DETAIL TO VERIFY]",
+    group: "current",
+    // Change to "2027 Title Sponsor" once that status is confirmed.
+    label: "2027 Partner",
+    role: "RunAdic supports registration and event participation for the 2027 American X History Xperience.",
     logoLabel: "LOGO_RUNADIC",
     logoSrc: "/images/partners/runadic.png",
     logoAspect: "970 / 972",
@@ -37,13 +43,15 @@ export const PARTNERS: Partner[] = [
   {
     id: "hampton-house",
     name: "The Historic Hampton House",
-    role: "Cultural and historical partner — a stop on the route and central to the story the tour tells.",
+    group: "past",
+    label: "Past & Historical Partner",
+    role: "The Historic Hampton House has played an important role in previous American X History Xperiences and remains central to the historical story the tour tells.",
     logoLabel: "LOGO_HAMPTON_HOUSE",
     logoSrc: "/images/partners/historic-hampton-house.png",
     logoAspect: "374 / 198",
     logoMaxWidth: "max-w-[530px]",
     href: "/route#hampton-house",
-    linkLabel: "See the Hampton House on the route",
+    linkLabel: "See the Hampton House on past routes",
   },
 ];
 

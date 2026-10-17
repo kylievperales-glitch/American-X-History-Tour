@@ -17,10 +17,23 @@ export type RouteStopData = {
   status: ContentStatus;
 };
 
-// Ordered stops along the route, from the Hampton House to Miami Beach.
-// Kevin Krueger's materials describe roughly four- and nine-mile options
-// beginning near the Hampton House and moving toward Miami Beach — exact
-// mile markers per stop are not yet confirmed. [VERIFY HISTORICAL DETAIL]
+// The 2027 route — known anchor points only. The exact ~1-mile path through
+// Miami Beach has not been finalized; do not add street names here until it
+// is. Rendered as a stylized (non-geographic) diagram on /route and /.
+export type RouteAnchor = { label: string; detail: string };
+
+export const ROUTE_2027_ANCHORS: RouteAnchor[] = [
+  { label: "Gather", detail: "Miami Beach / Convention Center area" },
+  { label: "~1-Mile Jog / Walk", detail: "Circuitous Miami Beach route — exact path to be finalized" },
+  { label: "Muhammad Ali Way", detail: "Finish / group photo" },
+  { label: "Rum Room", detail: "Boxing lesson + Coffee & Conversation" },
+];
+
+// PAST XPERIENCES — the longer route used by previous editions, from the
+// Hampton House to Miami Beach. Shown on /route under "Past Xperiences",
+// not as the current route. Kevin Krueger's materials describe roughly
+// four- and nine-mile options — exact mile markers per stop are not
+// confirmed. [VERIFY HISTORICAL DETAIL]
 export const ROUTE_STOPS: RouteStopData[] = [
   {
     number: "01",
@@ -96,7 +109,8 @@ export const ROUTE_STOPS: RouteStopData[] = [
     era: "Today",
     location: "Wynwood, Miami",
     description:
-      "The modern route carries participants through Wynwood and central Miami, connecting the historical stops to the contemporary city. [CONTENT TO VERIFY]",
+      // [CONTENT TO VERIFY] — confirm before expanding this description.
+      "Past routes carried participants through Wynwood and central Miami, connecting the historical stops to the contemporary city.",
     archivalImage: {
       src: "/images/archive/wynwood-streetscape-1960s.png",
       label: "ROUTE_04_ARCHIVAL",
@@ -120,7 +134,7 @@ export const ROUTE_STOPS: RouteStopData[] = [
     era: "Today",
     location: "Venetian Causeway, Miami",
     description:
-      "The crossing from Miami to Miami Beach — a physical and symbolic transition point on the route, and one of its most visually striking stretches.",
+      "The crossing from Miami to Miami Beach — a physical and symbolic transition point on past routes, and one of their most visually striking stretches.",
     archivalImage: {
       src: "/images/archive/venetian-causeway-1960s.jpg",
       label: "ROUTE_05_ARCHIVAL",
@@ -144,7 +158,7 @@ export const ROUTE_STOPS: RouteStopData[] = [
     era: "1964",
     location: "Miami Beach, Florida",
     description:
-      "The site of the February 25, 1964 championship fight, and the finish of the modern route — where the story's central moment took place.",
+      "The site of the February 25, 1964 championship fight, and the finish of past routes — where the story's central moment took place.",
     archivalImage: {
       src: "/images/archive/convention-center-1960s.png",
       label: "ROUTE_07_ARCHIVAL",
@@ -164,7 +178,9 @@ export const ROUTE_STOPS: RouteStopData[] = [
   },
 ];
 
-export const ROUTE_DISTANCES = {
-  short: "4 miles", // [VERIFY HISTORICAL DETAIL]
-  long: "9 miles", // [VERIFY HISTORICAL DETAIL]
+// Past-edition distances, kept for reference only — not shown publicly
+// until verified. [VERIFY HISTORICAL DETAIL]
+export const PAST_ROUTE_DISTANCES = {
+  short: "4 miles",
+  long: "9 miles",
 };

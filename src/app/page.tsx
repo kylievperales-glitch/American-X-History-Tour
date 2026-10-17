@@ -11,8 +11,8 @@ import { Spotlight } from "@/components/ui/Spotlight";
 import { Reveal } from "@/components/ui/Reveal";
 import { EventCTA } from "@/components/ui/EventCTA";
 import { TIMELINE, HOME_TIMELINE_IDS } from "@/data/timeline";
-import { ROUTE_STOPS } from "@/data/route";
-import { PARTICIPATION_WAYS, PAST_EVENT_PHOTOS } from "@/data/event";
+import { ROUTE_STOPS, ROUTE_2027_ANCHORS } from "@/data/route";
+import { PARTICIPATION_WAYS, PAST_EVENT_PHOTOS, EVENT_2027 } from "@/data/event";
 import { CTA, SITE } from "@/data/site";
 
 const homeTimeline = HOME_TIMELINE_IDS.map((id) => TIMELINE.find((e) => e.id === id)!).filter(
@@ -38,12 +38,12 @@ export default function HomePage() {
             </p>
             <p className="font-serif mt-7 max-w-md text-lg leading-relaxed text-muted-strong sm:text-xl">
               Miami. 1964. A champion. A changing city. A story you can still
-              experience today.
+              Xperience today.
             </p>
             <p className="font-serif mt-5 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
-              The American X History Tour is a community walk, run, and bike
-              event exploring Muhammad Ali&rsquo;s Miami story and the
-              city&rsquo;s history connected to it.
+              The American X History Tour is a community Xperience exploring
+              Muhammad Ali&rsquo;s Miami story through movement, history, and
+              the city connected to it.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <CTAButton href="/story">{CTA.secondary}</CTAButton>
@@ -74,6 +74,64 @@ export default function HomePage() {
         >
           <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Scroll</span>
           <span className="h-10 w-px animate-pulse bg-muted" />
+        </div>
+      </section>
+
+      {/* ============ 2027 XPERIENCE ============ */}
+      <section className="relative overflow-hidden border-t border-charcoal-line bg-ink py-20 sm:py-28">
+        <span
+          aria-hidden
+          className="font-display pointer-events-none absolute -right-6 -bottom-10 select-none text-[38vw] leading-none text-charcoal sm:-bottom-16 lg:text-[24vw]"
+        >
+          {EVENT_2027.year}
+        </span>
+        <div className="container-edit relative grid grid-cols-1 gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-16">
+          <Reveal>
+            <Eyebrow>American X History {EVENT_2027.year}</Eyebrow>
+            <h2 className="font-display mt-5 text-balance text-5xl leading-[0.92] text-white sm:text-7xl">
+              {EVENT_2027.weekday},
+              <br />
+              {EVENT_2027.dateShort}
+            </h2>
+            <p className="font-display text-metallic-gold mt-3 text-xl tracking-[0.2em] sm:text-2xl">
+              {EVENT_2027.location}
+            </p>
+            <p className="font-serif mt-7 max-w-xl text-lg leading-relaxed text-muted-strong sm:text-xl">
+              Stay tuned for the {EVENT_2027.year} American X History Xperience — a
+              morning of movement, boxing, conversation, and Miami history
+              honoring Muhammad Ali&rsquo;s connection to the city.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <CTAButton href="/event">{CTA.currentEvent}</CTAButton>
+              <CTAButton href={EVENT_2027.registrationUrl} variant="secondary">
+                {CTA.register}
+              </CTAButton>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted">
+              The Morning, As Planned
+            </p>
+            <ol className="mt-5 space-y-5 border-l border-accent-dim pl-6">
+              {ROUTE_2027_ANCHORS.map((anchor, i) => (
+                <li key={anchor.label} className="relative">
+                  <span
+                    aria-hidden
+                    className="absolute top-2 -left-[29px] h-[9px] w-[9px] rounded-full bg-accent"
+                  />
+                  <p className="font-display text-sm text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <p className="font-display text-xl text-white">{anchor.label}</p>
+                  <p className="font-sans text-xs text-muted">{anchor.detail}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 font-sans text-[10px] uppercase leading-relaxed tracking-[0.14em] text-muted">
+              {EVENT_2027.programNote}
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -213,8 +271,11 @@ export default function HomePage() {
               Read the story
             </Link>
             <span className="mx-2">·</span>
-            <Link href="/route" className="underline decoration-1 underline-offset-4 hover:text-accent">
-              See the full route
+            <Link
+              href="/route#past-xperiences"
+              className="underline decoration-1 underline-offset-4 hover:text-accent"
+            >
+              See past routes
             </Link>
           </p>
         </div>
@@ -238,10 +299,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ ROUTE TEASER ============ */}
+      {/* ============ PAST ROUTE TEASER ============ */}
       <section className="bg-paper py-24 text-black sm:py-32">
         <div className="container-edit">
-          <SectionIntro tone="light" eyebrow="From Brownsville To Miami Beach" title="Follow the Journey" />
+          <SectionIntro
+            tone="light"
+            eyebrow="Past Xperiences"
+            title="From Brownsville to Miami Beach"
+            lede="Previous editions of the American X History Tour connected the Historic Hampton House, Brownsville, mainland Miami, and Miami Beach through longer walk, run, and bike routes."
+          />
           <div className="mt-14 overflow-x-auto pb-4">
             <div className="flex min-w-[720px] items-center gap-2">
               {ROUTE_STOPS.map((stop, i) => (
@@ -261,17 +327,17 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <CTAButton href="/route" className="mt-10">
-            {CTA.route}
+          <CTAButton href="/route#past-xperiences" className="mt-10">
+            {CTA.pastRoutes}
           </CTAButton>
 
           <div className="mt-20">
-            <Eyebrow className="mb-4">From Years Past</Eyebrow>
+            <Eyebrow tone="light" className="mb-4">Past Xperiences</Eyebrow>
             <h3 className="font-display text-2xl text-black sm:text-3xl">
-              The Tour In Photos
+              Six Years of American X History
             </h3>
             <p className="font-serif mt-2 max-w-prose text-muted-on-light">
-              A look back at past runnings of the American X History Tour.
+              A look back at previous American X History Xperiences across Miami.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {PAST_EVENT_PHOTOS.map((entry) => (
@@ -291,7 +357,7 @@ export default function HomePage() {
               tone="light"
               eyebrow="Ways To Participate"
               title="You Do Not Have To Be A Runner."
-              lede="Walk, run, roll, ride, volunteer, or cheer — every way of showing up is part of the experience."
+              lede="Walk, run, roll, ride, volunteer, or cheer — every way of showing up is part of the Xperience."
             />
             <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden border border-paper-line bg-paper-line sm:grid-cols-3 lg:grid-cols-6">
               {PARTICIPATION_WAYS.map((way) => (
@@ -309,7 +375,7 @@ export default function HomePage() {
 
       {/* ============ CTA ============ */}
       <EventCTA
-        title="Experience It Yourself."
+        title="Xperience It Yourself."
         lede="The neighborhoods, landmarks, and history are still here to explore."
         primaryHref="/event"
         primaryLabel={CTA.primary}
