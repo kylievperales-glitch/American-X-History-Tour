@@ -111,7 +111,7 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted">
-              The Morning, As Planned
+              The Itinerary
             </p>
             <ol className="mt-5 space-y-5 border-l border-accent-dim pl-6">
               {ROUTE_2027_ANCHORS.map((anchor, i) => (
